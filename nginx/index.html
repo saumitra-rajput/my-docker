@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Live Deployment | Saumitra Rajput</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 5%;
+            gap: 40px;
+        }
+
+        .hero img {
+            width: 550px;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+
+        .hero-text p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        /* CONTENT SECTION */
+        .section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: #111827;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+        }
+
+        h3 {
+            margin-bottom: 8px;
+            color: #22c55e;
+        }
+
+        pre {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            color: #facc15;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0b0f19;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        @media(max-width:900px){
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+
+    <img src="https://www.trainwithshubham.com/s/store/courses/6914474b89421c67ac3e0500/cover.jpg?v=1" alt="DevOps Banner">
+
+    <div class="hero-text">
+        <h1>🚀 DevOps Live Deployment</h1>
+        <h2>Deployed by Saumitra Rajput</h2>
+
+        <p><strong>🌐 Infrastructure Overview</strong></p>
+        <p>AWS EC2 (Ubuntu Linux Instance)</p>
+        <p>Nginx Web Server</p>
+        <p>Running on Port 80 (HTTP)</p>
+        <p>Public IP based access</p>
+        <p>SSH-based remote management</p>
+
+        <br>
+
+        <p><strong>🔥 Deployment Summary</strong></p>
+        <p>Cloud server provisioning</p>
+        <p>Linux system administration</p>
+        <p>Web server setup & configuration</p>
+        <p>Service lifecycle management</p>
+        <p>Log monitoring & troubleshooting</p>
+    </div>
+
+</div>
+
+<!-- COMMAND SECTIONS -->
+<div class="section">
+
+    <div class="box">
+        <h3>📦 Package Management</h3>
+        <pre>
+sudo apt update
+sudo apt upgrade -y
+sudo apt install nginx -y
+nginx -v
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>🔄 Service Management</h3>
+        <pre>
+sudo systemctl status nginx
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl reload nginx
+sudo systemctl enable nginx
+sudo systemctl disable nginx
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>🌐 Network & Port Verification</h3>
+        <pre>
+sudo ss -tulnp | grep :80
+curl ifconfig.me
+sudo ufw status
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>📊 Log Monitoring</h3>
+        <pre>
+sudo tail -f /var/log/nginx/access.log
+sudo tail -f /var/log/nginx/error.log
+        </pre>
+    </div>
+
+</div>
+
+<footer>
+    ✅ Nginx is running successfully on AWS EC2 and serving traffic over Port 80.<br><br>
+    Built by Saumitra Rajput | Webpage structure generated with assistance from GPT.
+</footer>
+
+</body>
+</html>
+
