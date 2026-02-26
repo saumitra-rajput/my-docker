@@ -1,0 +1,12 @@
+# First Image docker
+
+
+FROM ubuntu
+
+WORKDIR /os
+
+COPY . .
+
+RUN apt-get update && apt install curl -y
+
+CMD ["echo", "Hello from my Custom image."]
