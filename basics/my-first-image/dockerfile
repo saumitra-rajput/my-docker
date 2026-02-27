@@ -9,4 +9,8 @@ COPY . .
 
 RUN apt-get update && apt install curl -y
 
-CMD ["echo", "Hello from my Custom image."]
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+CMD ["echo", "Hello world!, from my Custom image."]
