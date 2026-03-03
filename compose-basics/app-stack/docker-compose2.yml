@@ -1,0 +1,53 @@
+
+services:
+
+# defining web interface using flask
+  
+  web:
+    build: ./web
+    container_name: flask-app 
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      POSTGRES_DB: mydb
+      POSTGRES_USER: jarvis
+      POSTGRES_PASSWORD: testing123
+      REDIS_HOST: cache
+
+    # depends on db healthcheck and condition service_health
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    restart: always
+
+# defining postgres database 
+  
+  db:
+    image: postgres:17-alpine
+    container_name: mydata-base
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: jarvis
+      POSTGRES_PASSWORD: testing123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Added health check
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jarvis -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+# defining redis service
+ 
+  cache:
+    image: redis:latest
+    container_name: red-ninja
+
+# Defining volume
+
+volumes:
+  pgdata:
