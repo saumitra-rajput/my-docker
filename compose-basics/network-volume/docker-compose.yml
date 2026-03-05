@@ -1,0 +1,45 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: thor-nginx
+    ports:
+      - "80:80"
+    networks:
+      - ngnet
+    labels:
+      project: "docker-compose-learning"
+      service: "web-service"
+    depends_on:
+      db:
+        condition: service_healthy
+    
+
+  db:
+    image: mysql:8.0
+    container_name: paul
+    environment: 
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: webdb
+      MYSQL_USER: nina
+      MYSQL_PASSWORD: testing123
+    volumes:
+      - webdb:/var/lib/mysql
+    networks:
+      - ngnet
+    labels:
+      project: "docker-compose-learning"
+      service: "database"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  webdb:
+
+networks:
+  ngnet:
+
+
