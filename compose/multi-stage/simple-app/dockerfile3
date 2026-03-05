@@ -1,0 +1,11 @@
+# this is full size image
+
+FROM node:latest
+
+WORKDIR /newapp
+
+COPY app/ .
+
+RUN npm install
+
+CMD ["npm", "start"]
