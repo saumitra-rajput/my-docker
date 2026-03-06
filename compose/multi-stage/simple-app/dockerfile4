@@ -1,0 +1,14 @@
+# Using nginx:alpine because full size image has extra work on 
+# Running this file as non-root user
+
+FROM nginx:alpine
+
+WORKDIR /newapp
+
+RUN adduser -D appuser
+
+COPY . .
+
+USER appuser
+
+CMD ["echo", "Hello from from nginx"]

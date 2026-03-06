@@ -1,0 +1,12 @@
+FROM nginx
+
+WORKDIR /ninja
+
+COPY . .
+
+RUN apt-get update
+
+EXPOSE 80
+
+CMD ["echo", "hello world from nginx"]
+

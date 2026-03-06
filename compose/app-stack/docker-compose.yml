@@ -1,0 +1,42 @@
+
+services:
+
+# defining web interface using flask
+  
+  web:
+    build: ./web
+    container_name: flask-app 
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      POSTGRES_DB: mydb
+      POSTGRES_USER: jarvis
+      POSTGRES_PASSWORD: testing123
+      REDIS_HOST: cache
+    depends_on:
+      - db
+      - cache
+
+# defining postgres database 
+  
+  db:
+    image: postgres:17-alpine
+    container_name: mydata-base
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: jarvis
+      POSTGRES_PASSWORD: testing123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+# defining redis service
+ 
+  cache:
+    image: redis:latest
+    container_name: red-ninja
+
+# Defining volume
+
+volumes:
+  pgdata:

@@ -1,0 +1,29 @@
+
+
+services:
+  db:
+    image: mysql:latest
+    container_name: thordb
+    environment:
+      MYSQL_USER: thor
+      MYSQL_ROOT_PASSWORD: thor123
+      MYSQL_PASSWORD: thorpass
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress-app
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: thor
+      WORDPRESS_DB_PASSWORD: thorpass
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

@@ -1,0 +1,16 @@
+# First Image docker
+
+
+FROM ubuntu
+
+WORKDIR /os
+
+COPY . .
+
+RUN apt-get update && apt install curl -y
+
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+CMD ["echo", "Hello world!, from my Custom image."]

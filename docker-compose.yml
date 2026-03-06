@@ -1,0 +1,6 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: thor
+    ports:
+      - "80:80"
