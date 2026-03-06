@@ -1,0 +1,46 @@
+# app built from Dockerfile
+# database: postgres
+# volume: web-volume
+# custom network: cnet
+# environment variables in .env file
+# healthchecks on database
+
+services:
+  web:
+    build: ./flask-app-db/
+    container_name: flask-web
+    ports: 
+      - "5000:5000"
+    networks:
+      - cnet
+    environment:
+      DB_HOST: db
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    container_name: winter-man
+    environment: 
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - web-volume:/var/lib/postgresql/data
+    networks:
+      - cnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jarvis -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  cnet:
+
+volumes:
+  web-volume:
